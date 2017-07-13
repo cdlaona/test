@@ -1,0 +1,10 @@
+{
+    "sitename" : "ChofnAPI",
+    "source": "content",
+    "output": "_css",
+    "theme": "_themes/chofn",
+    "permalink": "{{directory}}/{{filename}}.html",
+    "writers": [
+        "nico.ArchiveWriter"
+    ]
+}

@@ -1,0 +1,61 @@
+{%- extends "layout.html" -%}
+{%- block title %}{{post.title}}{% endblock %}
+
+
+
+
+{%- block document %}
+
+{%- set year = 0 %}
+
+{%- for item in pagination.items %}
+
+{%- if config.writers|enabled('YearWriter') %}
+{%- if year != item.pubdate.year %}
+{%- set year = item.pubdate.year %}
+<a class="item-year" href="{{ index_url(year) }}">{{ year }}</a>
+{%- endif %}
+{%- endif %}
+
+<div class="item" itemscope itemtype="http://schema.org/Article">
+    <h2 class="item-title">
+        <time datetime="{{item.pubdate|xmldatetime}}" itemprop="dateModified">{{item.pubdate|date('Y-m-d')}}</time>
+        <a itemprop="name" href="{{permalink_url(item)}}">{{item.title}}</a>
+    </h2>
+    {% if item.meta.description %}
+    <div class="item-description" itemprop="description">
+        {{ item.meta.description }}
+    </div>
+    {% endif %}
+</div>
+{%- endfor %}
+
+
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">{{post.title}}</h1>
+  {%- if post.meta.description %}
+  <div class="entry-description" itemprop="description">{{post.meta.description}}</div>
+  {%- endif %}
+  <div class="entry-content" itemprop="articleBody">{{post.html}}</div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="{{post.pubdate|xmldatetime}}" itemprop="dateModified">{{post.pubdate|date('l, M jS, Y')}}</time>
+    {%- if post.tags|length and config.writers|enabled('TagWriter') %}
+    in <span class="entry-tags">
+      {% for tag in post.tags %}
+      <a href="{{ index_url('tag', tag) }}">{{tag}}</a>
+      {% endfor %}
+    </span>
+    {%- endif %}
+    {%- if post.meta.source %}
+    <a class="source sep" href="{{ post.meta.source }}">{{ post.meta.source }}</a>
+    {%- endif %}
+  </div>
+  {%- if config.disqus %}
+  {%- include "_disqus.html" %}
+  {%- endif %}
+  {%- if config.duoshuo %}
+  {%- include "_duoshuo.html" %}
+  {%- endif %}
+</div>
+{% endblock -%}
