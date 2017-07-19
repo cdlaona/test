@@ -19,13 +19,13 @@ function getHtmlPath(globPath) {
     var _array = [];
 
     for (var i = 0; i < _files.length; i++) {
+        _basePath = __dirname + '/../' + path.dirname(_files[i])+'/imgs/';
         var _fileJson = {
             expand: true,
             cwd: _basePath,
-            src: ["**/*.{png,jpg,gif}"],
+            src: ["*.{png,jpg,gif}"],
             dest: _basePath
         };
-        _basePath = path.dirname(_files[i])+'/imgs';
         _array.push(_fileJson);
     }
     return _array;
