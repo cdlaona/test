@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>超凡-专利</title>
+    <link rel="stylesheet" href="../static/codemirror.css" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link id="theme-link" rel="stylesheet" href="../static/dark.css" />
+    <link rel="stylesheet" href="../../development_all/style/chofnui.css" />
+    <link rel="stylesheet" href="../../development_all/style/comm.css" />
+    <link rel="stylesheet" href="../../development_all/style/font-awesome.min.css" />
+    <script src="../../development_all/js/jquery.min.js"></script>
+    <script src="../../development_all/js/chineserp.min.js"></script>
+    <script src="../../development_all/js/jquery.regionpicker.js"></script>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- themes-list -->
+    <div class="themes-list">
+        <h3 class="invisible">切换主题</h3>
+        <ul>
+            <li class=""><a href="javascript:void(0)" class="dark">dark</a></li>
+            <li class="on"><a href="javascript:void(0)" class="purple">purple</a></li>
+            <li class=""><a href="javascript:void(0)" class="blue">blue</a></li>
+            <li class=""><a href="javascript:void(0)" class="orange">orange</a></li>
+        </ul>
+    </div>
+    <!-- end themes-list -->
+
+    <!-- sidebar -->
+    <div id="sidebar">
+        <div class="nav">
+            <h1 style="text-align: center;">超凡-专利</h1>
+        </div>
+        <div class="sidebar-list">
+            <div id="result"><ul class="result-list"></ul></div>
+            <div id="static_list">
+                <hr/>
+                <!-- collapsble -->
+                {%- for item in pagination.total_items %}
+                <div class="collapsble">
+                    <div class="toc_title">
+                        <a href="#{{item.title}}">{{item.title}}</a>
+                        <span class="icon"></span>
+                    </div>
+                    <div class="toc_section">{{item.toc}}</div>
+                </div>
+                {%- endfor %}
+                <!-- end collapsble -->
+            </div>
+        </div>
+    </div>
+    <!-- end sidebar -->
+
+    <!-- container -->
+    <div class="container">
+        <h2 id="GMU">前端模块文档</h2>
+        <p>浏览器兼容列表：IE7+、Chrome、QQ浏览器、Firefox、Safari、360、搜狗浏览器</p>
+        <p>icon库： <a href="http://www.bootcss.com/p/font-awesome/">点击这里</a></p>
+        <h3>公用头部meta</h3>
+        <ul>
+            <li>meta name="renderer" content="webkit|ie-comp|ie-stand"</li>
+            <li>meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"</li>
+        </ul>
+        <div class="doc_desc">
+            <h3 id="-">历史版本</h3>
+            <strong id="0.1.0">0.1.0</strong>
+        </div>
+        <hr/>
+        <!--<ul class="signature"></ul>-->
+        {%- for item in pagination.items %}
+        <article class="clearfix method">
+            {{item.html}}
+        </article>
+        {%- endfor %}
+    </div>
+    <!-- end container -->
+
+</div>
+<a id="gotopBtn" href="#" style="display: none;">GoTop</a>
+<script type="text/javascript">
+    var globalSettings = {
+        themes: {"purple":"../static/purple.css","blue":"../static/blue.css","dark":"../static/dark.css","orange":"../static/orange.css"},
+        activeTheme: 'purple',
+        source: []
+    };
+    var data = {
+        'list' : []
+    };
+</script>
+<script src="../static/depencies.min.js"></script>
+<script src="../static/doc.js"></script>
+
+
+</body>
+</html>

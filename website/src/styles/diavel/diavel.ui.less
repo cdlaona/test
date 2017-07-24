@@ -1,0 +1,32 @@
+/**
+ *                diavel[大魔鬼]
+ *  _entry_      ............   生成核心UI底层样式
+ */
+
+
+
+
+
+@import "./diavel.common.less";
+
+
+
+
+
+/*------------------------------------*\
+                _entry_
+\*------------------------------------*/
+& when(@openSimpleMobile = 1){
+    @import "./core/reset/normalize-ie6.less";
+}
+& when(@openSimpleMobile = 2){
+    @import "./core/reset/normalize.less";
+}
+
+
+
+
+
+@import "./core/diavel.reset.less";
+@import "./core/diavel.unit.less";
+@import './core/diavel.base.less';
